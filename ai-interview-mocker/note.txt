@@ -1,3 +1,10 @@
 //ui.shadcn.com - easy  in-build tailwind css component
 npx shadcn@latest init
 npx shadcn@latest add button
+
+User Authentication process:-
+start-> user open app -> display login screen -> user error credentials -> validate credentials -> credentials valid? ->access granted -> load user dashboard -> end -> else access denied ->display error message -> go back to the landing screen
+
+user clerk for authentication
+
+use hyperui.dev to use prebuild ui component
