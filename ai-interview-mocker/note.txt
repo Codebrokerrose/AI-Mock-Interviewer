@@ -1,0 +1,3 @@
+//ui.shadcn.com - easy  in-build tailwind css component
+npx shadcn@latest init
+npx shadcn@latest add button
