@@ -11,15 +11,31 @@ import {
 import { Button } from "@/components/ui/button"; // Make sure this exists or use a <button> element
 import { Input } from "@/components/ui/input"; // Make sure this exists or use a <input> element
 import { Textarea } from "@/components/ui/textarea";
+import { chatSession } from "@/utils/GeminiAiModal";
+import { LoaderCircle } from "lucide-react";
 
 function AddNewInterview() {
   const [openDialog, setOpenDialog] = useState(false);
   const [jobPosition,setJobPosition] = useState();
   const [jobDesc,setJobDesc] = useState();
   const [jobExperience,setJobExperience] = useState();
+  const [loading ,setLoading] = useState(false);
+  const [JsonResponse,setJsonResponse] = useState([]);
 
-  const onSubmit = (e) => {
+  const onSubmit =async(e) => {
+    setLoading(true);
     e.preventDefault();
+
+    const InputPromt = "Job Position: "+jobPosition+", Job Description: "+jobDesc+", Years of Experience: "+jobExperience+", Depends on this information please give me "+process.env.NEXT_PUBLIC_INTERVIEW_QUESTION_COUNT+" interviww question with answered in json format, Give question and answerd as field on JSON";
+
+    const result=await chatSession.sendMessage(InputPromt);
+
+    const MockJsonResponse = (result.response.text()).replace('```json','').replace('```','');
+
+    console.log(JSON.parse(MockJsonResponse));
+    setJsonResponse(MockJsonResponse);
+    setLoading(false);
+    
   }
 
   return (
@@ -48,19 +64,19 @@ function AddNewInterview() {
               <div className="mt-7 my-3">
                 <label>Job Role/Job Position</label>
                 <Input placeholder="Ex. Full Stack Developer" required 
-                onchange={(e) => setJobPosition(e.target.value)} value={jobPosition}
+                onChange={(e) => setJobPosition(e.target.value)} value={jobPosition}
                 />
               </div>
               <div className="my-3">
                 <label>Job Description/ Tech Stack (In Short)</label>
                 <Textarea placeholder="Ex. React, Angular, NodeJs, MySql etc" required
-                onchange={(e) => setJobDesc(e.target.value)} value={jobDesc}
+                onChange={(e) => setJobDesc(e.target.value)} value={jobDesc}
                 />
               </div>
               <div className="my-3">
                 <label>Years of experience</label>
                 <Input placeholder="Ex. 5" type="number" max="100" required 
-                onchange={(e) => setJobExperience(e.target.value)} value={jobExperience}
+                onChange={(e) => setJobExperience(e.target.value)} value={jobExperience}
                 />
               </div>
               {/* Dialog Body */}
@@ -68,7 +84,12 @@ function AddNewInterview() {
                 <Button type="button" variant="outline" onClick={() => setOpenDialog(false)}>
                   Cancel
                 </Button>
-                <Button type="submit">Start Interview</Button>
+                <Button type="submit" disabled={loading}>
+                  {loading? <>
+                  <LoaderCircle className="animate-spin"/>'Generating from AI'</>:'Start Interview'
+                  }
+                  
+                </Button>
               </div>
             </form>
           </DialogDescription>
