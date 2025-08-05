@@ -8,3 +8,22 @@ start-> user open app -> display login screen -> user error credentials -> valid
 user clerk for authentication
 
 use hyperui.dev to use prebuild ui component
+
+
+Workflow->>>>
+
+Gemini Ai -> Generate Q&A from Ai(gemini Api)-> show question one by one-> record user answer -> convert user answer into speech to Text -> Save Question with User Answer in Database for final Repost 
+
+
+Backend Data>>>>  https://orm.drizzle.team/
+
+App-> Drizzle ORM (Objective relational mapping), it helps us to insert/retrive the data from the database without writing a query use neon database -> PostGresql
+
+neon.tech
+
+>> npx drizzle-kit push to create table and its structure to the corresponding database
+
+studio.... npm run db:studio
+
+
+>> next learn how to connect with api? mock inter view question with api

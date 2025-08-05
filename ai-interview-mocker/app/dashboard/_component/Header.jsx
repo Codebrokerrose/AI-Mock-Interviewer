@@ -14,7 +14,7 @@ export default function Header() {
     }, []);
 
   return (
-    <div className="flex p-4 items-center justify-between bg-secondary shadow-sm">
+    <div className="flex p-4 items-center justify-between bg-purple-100 shadow-sm">
       <Image src={"/logo.svg"} alt="Logo" width={70} height={50} />
       <ul className="hidden md:flex gap-6  ">
         {/* hidden initially when scrren size is small */}
