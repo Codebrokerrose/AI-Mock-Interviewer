@@ -18,6 +18,7 @@ import { db } from "@/utils/db";
 import { v4 as uuidv4 } from "uuid"; // Ensure you have uuid installed
 import { useUser } from "@clerk/nextjs";
 import moment from "moment/moment";
+import { useRouter } from "next/router";
 
 function AddNewInterview() {
   const [openDialog, setOpenDialog] = useState(false);
@@ -26,6 +27,7 @@ function AddNewInterview() {
   const [jobExperience,setJobExperience] = useState();
   const [loading ,setLoading] = useState(false);
   const [JsonResponse,setJsonResponse] = useState([]);
+  const router = useRouter();
   const {user}=useUser();
 
   const onSubmit =async(e) => {  // Handle form submission
@@ -56,6 +58,7 @@ function AddNewInterview() {
       console.log("Inserted ID",resp);
       if(resp){
         setOpenDialog(false); // Close the dialog after successful insertion
+        router.push(`/dashboard/interview/${resp[0].mockId}`); // Redirect to the interview page with the mockId
       }
     }else{
       console.error("Failed to generate mock interview questions");
@@ -113,7 +116,7 @@ function AddNewInterview() {
                 <Button type="button" variant="outline" onClick={() => setOpenDialog(false)}>
                   Cancel
                 </Button>
-                <Button type="submit" disabled={loading}>
+                <Button className="bg-purple-500" type="submit" disabled={loading}>
                   {loading? <>
                   <LoaderCircle className="animate-spin"/>'Generating from AI'</>:'Start Interview'
                   }

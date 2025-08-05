@@ -34,3 +34,4 @@ npm install @google/generative-ai
 
 >> import : `npm i moment` to get currennt time
 
+>> create dynamic route use [folder name] reason every user have a unique user id
