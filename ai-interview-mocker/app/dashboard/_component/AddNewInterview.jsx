@@ -18,7 +18,7 @@ import { db } from "@/utils/db";
 import { v4 as uuidv4 } from "uuid"; // Ensure you have uuid installed
 import { useUser } from "@clerk/nextjs";
 import moment from "moment/moment";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 function AddNewInterview() {
   const [openDialog, setOpenDialog] = useState(false);

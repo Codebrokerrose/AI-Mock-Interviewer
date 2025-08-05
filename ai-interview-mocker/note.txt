@@ -35,3 +35,7 @@ npm install @google/generative-ai
 >> import : `npm i moment` to get currennt time
 
 >> create dynamic route use [folder name] reason every user have a unique user id
+
+>>use react webcame for camera integration `npm i react-webcam`
+
+>>use lucide.dev for the icons
