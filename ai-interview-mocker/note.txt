@@ -23,7 +23,14 @@ neon.tech
 
 >> npx drizzle-kit push to create table and its structure to the corresponding database
 
-studio.... npm run db:studio
+studio....`` npm run db:studio``
 
 
 >> next learn how to connect with api? mock inter view question with api
+npm install @google/generative-ai
+
+
+>>use uuid npm for generate unique id every time `npm i uuid`
+
+>> import : `npm i moment` to get currennt time
+

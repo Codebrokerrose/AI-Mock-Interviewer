@@ -2,6 +2,7 @@ import { UserButton } from '@clerk/nextjs'
 import React from 'react'
 import AddNewInterview from './_component/AddNewInterview';
 
+// This is the main dashboard page where you can add new interviews
 function Dashboard() {
   return (
     <div className='p-10'>

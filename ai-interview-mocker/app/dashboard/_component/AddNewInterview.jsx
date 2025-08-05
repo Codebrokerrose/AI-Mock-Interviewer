@@ -13,6 +13,11 @@ import { Input } from "@/components/ui/input"; // Make sure this exists or use a
 import { Textarea } from "@/components/ui/textarea";
 import { chatSession } from "@/utils/GeminiAiModal";
 import { LoaderCircle } from "lucide-react";
+import { MockInterView } from "@/utils/schema";
+import { db } from "@/utils/db";
+import { v4 as uuidv4 } from "uuid"; // Ensure you have uuid installed
+import { useUser } from "@clerk/nextjs";
+import moment from "moment/moment";
 
 function AddNewInterview() {
   const [openDialog, setOpenDialog] = useState(false);
@@ -21,23 +26,47 @@ function AddNewInterview() {
   const [jobExperience,setJobExperience] = useState();
   const [loading ,setLoading] = useState(false);
   const [JsonResponse,setJsonResponse] = useState([]);
+  const {user}=useUser();
 
-  const onSubmit =async(e) => {
+  const onSubmit =async(e) => {  // Handle form submission
     setLoading(true);
     e.preventDefault();
 
-    const InputPromt = "Job Position: "+jobPosition+", Job Description: "+jobDesc+", Years of Experience: "+jobExperience+", Depends on this information please give me "+process.env.NEXT_PUBLIC_INTERVIEW_QUESTION_COUNT+" interviww question with answered in json format, Give question and answerd as field on JSON";
+    const InputPromt = "Job Position: "+jobPosition+", Job Description: "+jobDesc+", Years of Experience: "+jobExperience+", Depends on this information please give me "+process.env.NEXT_PUBLIC_INTERVIEW_QUESTION_COUNT+" interviww question with answered in json format, Give question and answerd as field on JSON"; // Adjust the prompt as needed
 
     const result=await chatSession.sendMessage(InputPromt);
 
+    // Log the response from the AI model
     const MockJsonResponse = (result.response.text()).replace('```json','').replace('```','');
 
     console.log(JSON.parse(MockJsonResponse));
-    setJsonResponse(MockJsonResponse);
+    setJsonResponse(MockJsonResponse); // Store the response in state for further use
+
+    if(MockJsonResponse){ // If the response is valid, proceed to insert into the database
+      const resp=await db.insert(MockInterView).values({
+        mockId:uuidv4(),
+        jsonMockResp: MockJsonResponse,
+        jobPosition: jobPosition,
+        jobDesc: jobDesc,
+        jobExperience: jobExperience,
+        createdBy: user?.primaryEmailAddress?.emailAddress || "unknown",
+        createdAt: moment().format("DD-MM-YYYY"),
+      }).returning({mockId:MockInterView.mockId}); //at each insertion to db we get mockId
+
+      console.log("Inserted ID",resp);
+      if(resp){
+        setOpenDialog(false); // Close the dialog after successful insertion
+      }
+    }else{
+      console.error("Failed to generate mock interview questions");
+    }
+
     setLoading(false);
     
   }
 
+  // Render the dialog component
+  // This will be triggered when the user clicks on the "Add New" button
   return (
     <Dialog open={openDialog} onOpenChange={setOpenDialog}>
       <DialogTrigger asChild>
