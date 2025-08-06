@@ -39,6 +39,7 @@ function RecordAnsSection({
     results,
     startSpeechToText,
     stopSpeechToText,
+    setResults,
   } = useSpeechToText({
     continuous: true,
     useLegacyResults: false,
@@ -101,8 +102,10 @@ function RecordAnsSection({
 
     if (resp) {
       toast.success("User Answer Recorded successfully!");
+      setUserAnswer(""); // Clear the answer after saving
+      setResults([]); // Clear the results to reset the transcription
     }
-    setUserAnswer(""); // Clear the answer after saving
+    setResults([]); // Clear results after saving
     setLoading(false); // Reset loading state
   };
 

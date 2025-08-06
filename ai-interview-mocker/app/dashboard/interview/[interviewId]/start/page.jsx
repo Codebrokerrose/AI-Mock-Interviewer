@@ -7,6 +7,7 @@ import { useParams } from "next/navigation";
 import QuestionsSection from "./_components/QuestionsSection";
 import RecordAnsSection from "./_components/RecordAnsSection";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 function StartInterview() {
   const { interviewId } = useParams(); // ✅ grabs the dynamic route param
@@ -59,7 +60,11 @@ function StartInterview() {
         <Button className="bg-purple-600"
         onClick={() => setActiveQuestionIndex(activeQuestionIndex + 1)}>Next Question</Button>
     }
-        {activeQuestionIndex==mockInterviewQuestion?.length-1&& <Button className="bg-purple-600">End Interview</Button>}
+        {activeQuestionIndex==mockInterviewQuestion?.length-1&& 
+        <Link href={'/dashboard/interview/'+interviewData?.mockId+'/feedback'}>
+        <Button className="bg-purple-600">End Interview</Button>
+        </Link>
+      }
       </div>
     </div>
   );
