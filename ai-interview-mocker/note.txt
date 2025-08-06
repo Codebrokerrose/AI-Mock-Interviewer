@@ -49,4 +49,4 @@ npm i react-hook-speech-to-text
 
 use shadcn toast component .. npx shadcn@latest add sonner
 
-
+>> npx shadcn@latest add collapsible

@@ -92,8 +92,8 @@ function RecordAnsSection({
     const resp = await db.insert(UserAnswer).values({
       mockIdRef: interviewData?.mockId,
       question: mockInterviewQuestion[activeQuestionIndex]?.question,
-      correctAns: mockInterviewQuestion[activeQuestionIndex]?.answer,
-      userAns: userAnswer,
+      correctAnswer: mockInterviewQuestion[activeQuestionIndex]?.answer,
+      userAnswer: userAnswer,
       feedback: json?.feedback,
       rating: json?.rating,
       userEmail: user?.primaryEmailAddress?.emailAddress,
