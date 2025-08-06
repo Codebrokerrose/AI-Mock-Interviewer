@@ -28,7 +28,7 @@ function QuestionsSection({ mockInterviewQuestion, activeQuestionIndex }) {
               </h2>
             ))}
         </div>
-        <h2 className="my-5 text-md md:text-lg">
+        <h2 className="my-5 text-md md:text-sm font-semibold ">
           {mockInterviewQuestion[activeQuestionIndex]?.question}
         </h2>
 

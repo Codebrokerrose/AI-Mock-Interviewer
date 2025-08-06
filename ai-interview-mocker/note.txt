@@ -12,7 +12,8 @@ use hyperui.dev to use prebuild ui component
 
 Workflow->>>>
 
-Gemini Ai -> Generate Q&A from Ai(gemini Api)-> show question one by one-> record user answer -> convert user answer into speech to Text -> Save Question with User Answer in Database for final Repost 
+Gemini Ai -> Generate Q&A from Ai(gemini Api)-> show question one by one-> record user answer -> convert user answer into speech to Text -> Save Question with User Answer in Database for final Repost
+(imp: before question saving into db , Get the correct answer + feedback + rating for user answer) 
 
 
 Backend Data>>>>  https://orm.drizzle.team/
@@ -43,3 +44,9 @@ npm install @google/generative-ai
 >> React Hook to transcribe microphone input into text. (to process the voice use this npm react library)
 
 npm i react-hook-speech-to-text
+
+>> Record User Answer with ai feedback:- 
+
+use shadcn toast component .. npx shadcn@latest add sonner
+
+
