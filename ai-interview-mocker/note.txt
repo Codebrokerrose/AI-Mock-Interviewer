@@ -39,3 +39,7 @@ npm install @google/generative-ai
 >>use react webcame for camera integration `npm i react-webcam`
 
 >>use lucide.dev for the icons
+
+>> React Hook to transcribe microphone input into text. (to process the voice use this npm react library)
+
+npm i react-hook-speech-to-text

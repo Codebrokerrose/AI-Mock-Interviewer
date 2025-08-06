@@ -7,6 +7,7 @@ import { useParams } from "next/navigation";
 import { Lightbulb, WebcamIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Webcam from "react-webcam";
+import Link from "next/link";
 
 function Interview() {
   const [interviewData, setInterviewData] = useState(null);
@@ -90,9 +91,11 @@ function Interview() {
 
       {/* Start Interview Button */}
       <div className="flex justify-end mt-4">
+        <Link href={`/dashboard/interview/${interviewId}/start`}>
         <Button className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded-lg">
           Start Interview
         </Button>
+        </Link>
       </div>
     </div>
   );
