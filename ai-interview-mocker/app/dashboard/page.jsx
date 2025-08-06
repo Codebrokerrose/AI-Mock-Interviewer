@@ -1,6 +1,7 @@
 import { UserButton } from '@clerk/nextjs'
 import React from 'react'
 import AddNewInterview from './_component/AddNewInterview';
+import InterviewList from './_component/InterviewList';
 
 // This is the main dashboard page where you can add new interviews
 function Dashboard() {
@@ -12,6 +13,10 @@ function Dashboard() {
       <div className='grid grid-cols-1 md:grid-cols-3 my-5'>
         <AddNewInterview />
       </div>
+
+      {/* Previous Interview List  */}
+      <InterviewList/>
+
     </div>
   );
 }
