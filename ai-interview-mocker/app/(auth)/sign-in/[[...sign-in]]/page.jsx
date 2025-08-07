@@ -14,7 +14,7 @@ export default function Page() {
       {/* Image Section */}
       <img
         alt="Login illustration"
-        src="https://plus.unsplash.com/premium_photo-1738894549184-c0b84c186e62?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        src="https://image.slidesdocs.com/responsive-images/docs/picture-of-artificial-intelligence-in-science-and-technology-page-border-background-word-template_dfd84202d0__1131_1600.jpg"
         className="h-full w-full object-cover"
       />
     </section>
