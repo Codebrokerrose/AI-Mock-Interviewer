@@ -3,6 +3,9 @@
 PREPTIK is an AI-powered mock interview platform designed to simulate real-world interviews with the help of Gemini AI, voice input, and webcam support. It helps users practice interview questions, receive smart feedback, and improve their soft skills in a real-time environment.
 
 ---
+## 🔗 Website
+Access the live platform here: [PREPTIK – AI Mock Interviewer](https://preptik.vercel.app)
+---
 
 ## 🛠️ Tech Stack
 
@@ -41,3 +44,4 @@ E --> F[Load User Dashboard]
 D -- No --> G[Access Denied]
 G --> H[Display Error Message]
 H --> I[Back to Landing Page]
+
